@@ -49,15 +49,27 @@ export const MysteryWidget: React.FC = () => {
     setSelectedCardId(card.id);
     setGameState(WidgetState.REVEALING);
 
-    // Fetch reading immediately
     try {
-      const data = await getTarotReading(card.name);
+      // Run the API call and the animation timer in PARALLEL.
+      // This ensures the user waits for whichever is longer, not the sum of both.
+      const [_, data] = await Promise.all([
+        // Minimum animation time (800ms) to ensure the flip looks good
+        new Promise(resolve => setTimeout(resolve, 800)),
+        // The API call
+        getTarotReading(card.name)
+      ]);
+
       setReadingData(data);
-      setTimeout(() => {
-        setGameState(WidgetState.READING);
-      }, 800); 
     } catch (e) {
-      console.error(e);
+      console.error("Decoding Error:", e);
+      // Fallback data if API fails, ensuring the user is never stuck
+      setReadingData({
+        reading: "SIGNAL INTERFERENCE.",
+        blessing: "MANUAL REBOOT."
+      });
+    } finally {
+      // ALWAYS transition to reading state, regardless of success or failure
+      setGameState(WidgetState.READING);
     }
   }, [gameState]);
 
