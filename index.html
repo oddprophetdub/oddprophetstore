@@ -26,12 +26,22 @@
             },
             animation: {
               'glitch': 'glitch 1s linear infinite',
+              'fadeIn': 'fadeIn 0.5s ease-out forwards',
+              'slideUp': 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
             },
             keyframes: {
               glitch: {
                 '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
                 '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
                 '62%': { transform: 'translate(0,0) skew(5deg)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(20px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
               }
             }
           }
@@ -94,5 +104,6 @@
   <body class="bg-tempest-black text-white h-screen overflow-hidden antialiased font-sans">
     <div class="noise-bg"></div>
     <div id="root" class="h-full w-full relative z-10"></div>
+    <script type="module" src="./index.tsx"></script>
   </body>
 </html>

@@ -35,7 +35,7 @@ export const ReadingOverlay: React.FC<ReadingOverlayProps> = ({ card, readingDat
             
             {/* The Reading - Big, Bold, Short */}
             <div className="text-center">
-                <p className="text-white font-bold text-xl uppercase leading-none tracking-tight glitch-text">
+                <p className="text-white font-bold text-xl uppercase leading-none tracking-tight animate-glitch">
                 "{readingData.reading}"
                 </p>
             </div>
