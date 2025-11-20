@@ -65,14 +65,6 @@ export const ReadingOverlay: React.FC<ReadingOverlayProps> = ({ card, readingDat
                 // ENJOY YOUR CODE //
               </p>
             </div>
-            
-            {/* Play Again Button */}
-            <button 
-              onClick={onClose}
-              className="mt-6 w-full py-2 border border-white/20 text-white/50 hover:text-white hover:border-white hover:bg-white/5 transition-all uppercase text-xs tracking-[0.2em] font-bold"
-            >
-              RE-INITIALIZE SYSTEM
-            </button>
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center py-12 space-y-6">

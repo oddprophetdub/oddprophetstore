@@ -1,6 +1,6 @@
 import React from 'react';
 import { TarotCardData } from '../types';
-import { LOGO_URL } from '../constants';
+import { LOGO_SRC } from '../constants';
 
 interface CardProps {
   card: TarotCardData;
@@ -25,17 +25,14 @@ export const Card: React.FC<CardProps> = ({ card, isFlipped, onClick, disabled, 
       >
         {/* CARD BACK (The "Mystery") */}
         <div className="absolute w-full h-full backface-hidden border border-white/20 bg-tempest-offblack">
-          <div className="w-full h-full flex flex-col items-center justify-center bg-black p-4">
-             {/* Branded Logo Back */}
-             <div className="border-2 border-white/10 w-[90%] h-[95%] flex flex-col items-center justify-center relative overflow-hidden">
+          <div className="w-full h-full flex items-center justify-center bg-black">
+             {/* Logo / Industrial Pattern */}
+             <div className="border-2 border-white/10 w-[90%] h-[95%] flex items-center justify-center relative p-6">
                 <img 
-                  src={LOGO_URL} 
-                  alt="Tarot & Tempest" 
-                  className="w-32 opacity-80 drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]"
+                  src={LOGO_SRC} 
+                  alt="Logo" 
+                  className="w-full h-full object-contain opacity-80 grayscale contrast-125 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]"
                 />
-                <div className="absolute bottom-4 text-[8px] tracking-[0.4em] text-white/40 uppercase font-bold">
-                  MMXXIV
-                </div>
              </div>
           </div>
         </div>

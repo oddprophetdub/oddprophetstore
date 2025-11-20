@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { TAROT_DECK, LOGO_URL } from '../constants';
+import { TAROT_DECK, LOGO_SRC } from '../constants';
 import { Card } from './Card';
 import { ReadingOverlay } from './ReadingOverlay';
 import { getTarotReading } from '../services/geminiService';
@@ -14,12 +14,10 @@ export const MysteryWidget: React.FC = () => {
   // Initial Shuffle Animation Effect
   useEffect(() => {
     if (gameState === WidgetState.IDLE) {
-      // Auto-start shuffle after a delay. 
-      // CRITICAL: Must be longer than the Card flip animation (700ms) + movement (800ms)
-      // to prevent DOM reordering (shuffling) while the card is still flipping.
+      // Auto-start shuffle after a moment
       const timer = setTimeout(() => {
         setGameState(WidgetState.SHUFFLING);
-      }, 1200);
+      }, 500);
       return () => clearTimeout(timer);
     }
   }, [gameState]);
@@ -78,8 +76,7 @@ export const MysteryWidget: React.FC = () => {
          transform: `${centerTransform} translate(0px, 0px) rotate(0deg)`,
          zIndex: index,
          opacity: 1,
-         // Slower transition for smooth return to deck
-         transition: 'all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1)',
+         transition: 'all 0.3s ease',
          transformOrigin: 'center center'
        };
     }
@@ -130,18 +127,17 @@ export const MysteryWidget: React.FC = () => {
 
   return (
     <div className="relative w-full max-w-6xl mx-auto h-[600px] flex flex-col items-center justify-center overflow-hidden md:overflow-visible">
-      {/* Header Logo - Resized to be smaller and tighter to top */}
-      <div className="absolute top-2 z-20 flex flex-col items-center pointer-events-none w-full">
+      {/* Instruction Text */}
+      <div className="absolute top-10 z-20 text-center pointer-events-none mix-blend-difference w-full flex flex-col items-center justify-center">
         <img 
-          src={LOGO_URL} 
+          src={LOGO_SRC} 
           alt="Tarot & Tempest" 
-          className="w-28 md:w-36 mb-1 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]"
+          className="h-20 md:h-32 object-contain mb-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]"
         />
-        <p className="text-white font-semibold text-[10px] md:text-xs tracking-[0.3em] uppercase animate-pulse mt-1 mix-blend-difference">
+        <p className="text-white font-semibold text-xs md:text-sm tracking-[0.3em] uppercase animate-pulse">
           {gameState === WidgetState.SHUFFLING && "INITIALIZING SEQUENCE..."}
           {gameState === WidgetState.PICKING && "SELECT YOUR FREQUENCY"}
           {gameState === WidgetState.REVEALING && "DECODING..."}
-          {(gameState === WidgetState.IDLE) && "SYSTEM RESET..."}
         </p>
       </div>
 

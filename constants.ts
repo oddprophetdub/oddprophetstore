@@ -1,7 +1,7 @@
 import { TarotCardData } from './types';
 
 export const DISCOUNT_CODE = "TEMPEST10";
-export const LOGO_URL = "https://media.sellfy.store/images/eBf0lIHr/SaeE/TT_MINIMAL_LIGHTNING_02_WHITE_ON_ALPHA_STICKER_STYLE.png";
+export const LOGO_SRC = "https://media.sellfy.store/images/eBf0lIHr/SaeE/TT_MINIMAL_LIGHTNING_02_WHITE_ON_ALPHA_STICKER_STYLE.png";
 
 // A curated list of Major Arcana for the widget using classic Rider-Waite imagery
 export const TAROT_DECK: TarotCardData[] = [
